@@ -67,7 +67,7 @@ def Main():
             logClient.write(str(contador))
             logClient.write('\nTiempo APROXIMADO de llegada\n')
             logClient.write(str(millis(start_time)))
-            logClient.write('Tamanio del archivo\n')
+            logClient.write('\nTamanio del archivo\n')
             logClient.write(str(os.stat('outputFile.zip').st_size))
         with open('outputFile.zip', 'rb') as f1:
             m = hashlib.sha256();
