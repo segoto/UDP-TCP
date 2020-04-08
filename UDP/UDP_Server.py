@@ -2,7 +2,7 @@ import socket
 import hashlib
 from datetime import datetime
 from threading import Thread
-
+import math as mt
 clientSupported = int(input('Cuantos clientes desea en simultaneo \n'))
 file = int(input('Que archivo quiere enviar(100MiB o 200MiB)? 1/2'))
 ConnectedClients = []
@@ -44,7 +44,8 @@ class Client(Thread):
         if file == 1:
             print(dig1)
             self.s.sendto(dig1, self.addr)
-            self.s.sendto(100000000/4096 , self.addr)
+            packages = str(mt.ceil(10000000000/4096))
+            self.s.sendto(packages.encode('utf-8'), self.addr)
             with open('100MB.zip', 'rb') as de:
                 start_time = datetime.now()
                 contenido = de.read(4096)
@@ -61,6 +62,8 @@ class Client(Thread):
             # with open('500.mp4','rb') as dd:
             print(dig2, 'dig2')
             self.s.sendto(dig2, self.addr)
+            packages = str(mt.ceil(20000000000 / 4096))
+            self.s.sendto(packages.encode('utf-8'), self.addr)
             with open('200MB.zip', 'rb') as de:
                 contenido = de.read(4096)
                 start_time = datetime.now()
