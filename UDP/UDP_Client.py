@@ -42,6 +42,7 @@ def Main():
 
     # Hash
     dataHash, server = s.recvfrom(2048)
+    packagesExpected, server = s.recvfrom(2048)
     print(dataHash)
 
     # Data
@@ -63,6 +64,7 @@ def Main():
                 data, server = s.recvfrom(4096)
                 contador += 1
         except socket.timeout:
+            logClient.write('\nCantidad paquetes esperados', packagesExpected,'\n')
             logClient.write('\nCantidad de pauetes recibidos\n')
             logClient.write(str(contador))
             logClient.write('\nTiempo APROXIMADO de llegada\n')

@@ -44,6 +44,7 @@ class Client(Thread):
         if file == 1:
             print(dig1)
             self.s.sendto(dig1, self.addr)
+            self.s.sendto(100000000/4096 , self.addr)
             with open('100MB.zip', 'rb') as de:
                 start_time = datetime.now()
                 contenido = de.read(4096)
