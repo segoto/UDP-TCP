@@ -45,7 +45,7 @@ def Main():
     packagesExpected, server = s.recvfrom(2048)
     packages = int(packagesExpected.decode('utf-8'))
     print(dataHash)
-
+    print(packagesExpected)
     # Data
 
     with open('outputFile.zip', 'wb') as f:

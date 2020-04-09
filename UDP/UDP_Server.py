@@ -20,7 +20,7 @@ print(m1.digest_size, '100 mb')
 m2 = hashlib.sha256();
 m2.update(contenido2)
 dig2 = m2.digest()
-print(m2.digest_size, '100 mb')
+print(m2.digest_size, '200 mb')
 
 def millis(start_time):
     dt = datetime.now() - start_time
@@ -49,11 +49,15 @@ class Client(Thread):
             with open('100MB.zip', 'rb') as de:
                 start_time = datetime.now()
                 contenido = de.read(4096)
+
                 contador = 0
+                print(contenido, contador)
                 while contenido:
                     self.s.sendto(contenido, self.addr)
                     contenido = de.read(4096)
                     contador += 1
+                    print(contenido, contador)
+            print(contador)
             logServer.write('Tiempo en enviar los paquetes\n')
             logServer.write(str(millis(start_time)))
             logServer.write('\nCantidad de paquetes enviados\n')
