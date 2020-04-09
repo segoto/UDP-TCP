@@ -49,15 +49,12 @@ class Client(Thread):
             with open('100MB.zip', 'rb') as de:
                 start_time = datetime.now()
                 contenido = de.read(4096)
-
                 contador = 0
-                print(contenido, contador)
                 while contenido:
                     self.s.sendto(contenido, self.addr)
                     contenido = de.read(4096)
                     contador += 1
-                    print(contenido, contador)
-            print(contador)
+
             logServer.write('Tiempo en enviar los paquetes\n')
             logServer.write(str(millis(start_time)))
             logServer.write('\nCantidad de paquetes enviados\n')
@@ -76,8 +73,8 @@ class Client(Thread):
                     self.s.sendto(contenido, self.addr)
                     contenido = de.read(4096)
                     contador += 1
-                    logServer.write('Tiempo en enviar los paquetes\n')
-                    logServer.write(str(millis(start_time)))
+            logServer.write('Tiempo en enviar los paquetes\n')
+            logServer.write(str(millis(start_time)))
             logServer.write('\nCantidad de paquetes enviados\n')
             logServer.write(str(contador))
         print('En Cliente recibio el archivo correctamente')
